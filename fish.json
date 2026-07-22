@@ -51,15 +51,6 @@
       "changeable": 0
     },
     {
-      "key": "WexAiWenCai",
-      "name": "✧文才┃秒播✧",
-      "type": 3,
-      "api": "csp_WexAiWenCaiGuard",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 0
-    },
-    {
       "key": "WexHanXiaoQuan",
       "name": "✧韩剧┃秒播✧",
       "type": 3,
