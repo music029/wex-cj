@@ -1,81 +1,39 @@
 {
-  "source": "https://9280.kstore.vip/aiwex.json",
-
-  "keep_keys": [
+  "sites_order": [
     "Douban",
-    "Wexconfig",
-
-    "玩偶",
-    "AiNewMuOu",
-    "二小",
-    "NewZhiZhen",
-    "AiNewYiDong4K",
-    "AiNewDuoDuo",
-    "AiNewGuanYing",
-    "AiQwMkv",
-
     "WexAiReBo",
     "WexAiGuaZi",
     "WexAiDuBoKu",
-    "WexAiWenCai"
-  ],
-
-  "remove_keywords": [
-    "直播",
-    "短剧",
-    "动漫",
-    "动画",
-    "听书",
-    "儿歌",
-    "音乐",
-    "教学",
-    "体育",
-    "教育",
-    "课堂",
-    "哔哩",
-    "网盘",
-    "分享",
-    "综合",
-    "采集",
-    "推送",
-    "DIY"
+    "WexAiYueYue",
+    "WexAiWenCai",
+    "WexHanXiaoQuan",
+    "WexAiV6DaShiXiong",
+    "WexAiV6TeGou",
+    "賤賤",
+    "WexAiYiYs",
+    "AnimeAiFanShu",
+    "AnimeAiMiaoWu",
+    "AnimeAiHuazi",
+    "AnimeAiMoDu"
   ],
 
   "rename": {
     "Douban": "✧豆瓣┃导航✧",
-    "Wexconfig": "✧设置┃中心✧",
 
-    "玩偶": "✧玩偶┃4K✧",
-    "AiNewMuOu": "✧木偶┃4K✧",
-    "二小": "✧二小┃4K✧",
-    "NewZhiZhen": "✧至臻┃4K✧",
-    "AiNewYiDong4K": "✧逸动┃4K✧",
-    "AiNewDuoDuo": "✧多多┃4K✧",
-    "AiNewGuanYing": "✧观影┃4K✧",
-    "AiQwMkv": "✧七味┃4K✧",
+    "WexAiReBo": "✧热播┃秒播✧",
+    "WexAiGuaZi": "✧瓜子┃秒播✧",
+    "WexAiDuBoKu": "✧独播┃秒播✧",
+    "WexAiYueYue": "✧闪电┃秒播✧",
+    "WexAiWenCai": "✧文才┃秒播✧",
+    "WexHanXiaoQuan": "✧韩剧┃秒播✧",
+    "WexAiV6DaShiXiong": "✧师兄┃秒播✧",
+    "WexAiV6TeGou": "✧太狗┃秒播✧",
+    "賤賤": "✧贱片┃秒播✧",
+    "WexAiYiYs": "✧伊影┃秒播✧",
 
-    "WexAiReBo": "✧热播┃影视✧",
-    "WexAiGuaZi": "✧瓜子┃影视✧",
-    "WexAiDuBoKu": "✧独播┃影视✧",
-    "WexAiWenCai": "✧文才┃影视✧"
-  },
-
-  "order": [
-    "Douban",
-    "Wexconfig",
-
-    "玩偶",
-    "AiNewMuOu",
-    "二小",
-    "NewZhiZhen",
-    "AiNewYiDong4K",
-    "AiNewDuoDuo",
-    "AiNewGuanYing",
-    "AiQwMkv",
-
-    "WexAiReBo",
-    "WexAiGuaZi",
-    "WexAiDuBoKu",
-    "WexAiWenCai"
-  ]
+    "AnimeAiFanShu": "✧番薯┃动漫✧",
+    "AnimeAiMiaoWu": "✧喵呜┃动漫✧",
+    "AnimeAiHuazi": "✧花海┃动漫✧",
+    "AnimeAiMoDu": "✧魔都┃动漫✧"
+  }
 }
