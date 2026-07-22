@@ -2,7 +2,12 @@ import json
 import urllib.request
 
 
+# 原始接口地址
+SOURCE = "https://你的源地址/fish.json"
+
+
 CONFIG_FILE = "config.json"
+
 OUTPUT_FILE = "fish.json"
 
 
@@ -19,7 +24,7 @@ def load_json(file):
 
 
 
-def save_json(file,data):
+def save_json(file, data):
 
     with open(
         file,
@@ -36,40 +41,32 @@ def save_json(file,data):
 
 
 
-def download(url):
-
-    print("================")
-    print("下载接口:")
-    print(url)
-
+def fetch_source():
 
     req = urllib.request.Request(
-
-        url,
-
+        SOURCE,
         headers={
             "User-Agent":
             "Mozilla/5.0"
         }
-
     )
 
 
     with urllib.request.urlopen(
         req,
-        timeout=30
-    ) as r:
-
+        timeout=20
+    ) as response:
 
         return json.loads(
-            r.read()
+            response.read()
             .decode("utf-8")
         )
 
 
 
-
 def main():
+
+    print("开始获取源接口...")
 
 
     cfg = load_json(
@@ -77,99 +74,29 @@ def main():
     )
 
 
-    data = download(
-        cfg["source"]
-    )
-
-
-    if "sites" not in data:
-
-        raise Exception(
-            "接口异常，没有sites字段"
-        )
-
-
-    sites = data["sites"]
-
-
-    print(
-        "原始站点:",
-        len(sites)
-    )
-
-
-    keep_keys = cfg["keep_keys"]
-
-
-    result = []
+    data = fetch_source()
 
 
 
-    for site in sites:
-
-
-        key = site.get(
-            "key",
-            ""
-        )
-
-
-        name = site.get(
-            "name",
-            ""
-        )
-
-
-        text = key + name
-
-
-
-        # ========
-        # 优先保留
-        # ========
-
-        if key in keep_keys:
-
-            result.append(site)
-
-            continue
-
-
-
-        # ========
-        # 删除关键词
-        # ========
-
-
-        remove = False
-
-
-        for word in cfg["remove_keywords"]:
-
-
-            if word in text:
-
-                remove = True
-
-                break
-
-
-
-        if remove:
-
-            continue
-
-
-
-    # ==========
-    # 改名
-    # ==========
-
+    order = cfg["sites_order"]
 
     rename = cfg["rename"]
 
 
-    for site in result:
+
+    source_sites = data.get(
+        "sites",
+        []
+    )
+
+
+
+    temp = {}
+
+
+
+    # 白名单过滤
+    for site in source_sites:
 
 
         key = site.get(
@@ -177,89 +104,91 @@ def main():
         )
 
 
-        if key in rename:
+        if key in order:
 
 
-            site["name"] = rename[key]
+            # 修改名称
+
+            if key in rename:
+
+                site["name"] = rename[key]
+
+
+            temp[key] = site
 
 
 
 
-    # ==========
-    # 排序
-    # ==========
+    # 按指定顺序输出
 
-
-    order = cfg["order"]
-
-
-    new_sites = []
-
+    sites = []
 
 
     for key in order:
 
 
-        for site in result:
+        if key in temp:
 
-
-            if site.get("key") == key:
-
-                new_sites.append(site)
-
-                break
+            sites.append(
+                temp[key]
+            )
 
 
 
-    data["sites"] = new_sites
+
+    result = {
+
+        "spider":
+        data.get(
+            "spider",
+            ""
+        ),
 
 
-
-    print("================")
-
-    print(
-        "过滤后站点:",
-        len(new_sites)
-    )
-
-    print("================")
+        "wallpaper":
+        data.get(
+            "wallpaper",
+            ""
+        ),
 
 
-
-    for s in new_sites:
-
-
-        print(
-
-            s.get("key"),
-
-            "|",
-
-            s.get("name")
-
-        )
+        "logo":
+        data.get(
+            "logo",
+            ""
+        ),
 
 
+        "sites":
+        sites
 
-    print("================")
+    }
 
 
 
     save_json(
-
         OUTPUT_FILE,
-
-        data
-
+        result
     )
 
 
 
     print(
-        "生成完成:",
-        OUTPUT_FILE
+        "采集站点生成完成"
     )
 
+
+    print(
+        "数量:",
+        len(sites)
+    )
+
+
+    for s in sites:
+
+        print(
+            s.get("name")
+        )
 
 
 
